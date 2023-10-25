@@ -25,10 +25,11 @@ public class Main {
 			graph.get(ver2).add(ver1);
 		}
 		
+        /*
 		//treeMap에 <k,v> => <자식노드 , 부모노드>로 저장
 		for (int i = 0; i <= total; i++) {
 			Collections.sort(graph.get(i));
-		}
+		}*/
 		result = new TreeMap<>();
 		visited = new boolean[total+1];
 		dfs(1);
