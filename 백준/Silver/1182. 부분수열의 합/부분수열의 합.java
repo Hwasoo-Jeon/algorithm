@@ -6,7 +6,6 @@ public class Main {
 	static int num;
 	static int target;
 	static int[] arr;
-	static boolean[] visit;
 	static int result = 0;
 	
 	public static void main(String[] args) throws IOException {
@@ -19,7 +18,6 @@ public class Main {
 		num = Integer.parseInt(st.nextToken());
 		target = Integer.parseInt(st.nextToken());
 		arr = new int[num];
-		visit = new boolean[num];
 	
 		st = new StringTokenizer(br.readLine());
 		for(int i =0; i<num; i++) {
@@ -41,14 +39,9 @@ public class Main {
 			return;
 		}
 		
-		
-		if(!visit[depth]) {
-			visit[depth] = true;
-			dfs(depth+1, cur+arr[depth]);
-			dfs(depth+1, cur);
-			visit[depth] = false;
-		}
-		
+        dfs(depth+1, cur+arr[depth]);
+        dfs(depth+1, cur);
+			
 	}
 	
 }
