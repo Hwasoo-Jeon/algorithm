@@ -1,15 +1,15 @@
 class Solution {
+    
     static int dest = 0;
     static int size = 0;
     static int answer = 0;
+    
     public int solution(int[] numbers, int target) {
         
         dest = target;
-        size = numbers.length;
-                
+        size = numbers.length;        
         dfs(numbers, -1, 0);
-        
-        
+    
         return answer;
     }
     //dfs
