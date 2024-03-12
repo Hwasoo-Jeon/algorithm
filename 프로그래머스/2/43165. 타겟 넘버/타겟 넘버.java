@@ -1,26 +1,29 @@
-import java.util.*;
-
 class Solution {
-    static int[] arr;
-    static int realTarget = 0;
-    static int result = 0;
+    static int dest = 0;
+    static int size = 0;
+    static int answer = 0;
     public int solution(int[] numbers, int target) {
         
-        arr = Arrays.copyOf(numbers, numbers.length);
-        realTarget = target;
-        bfs(0,0);
-        return result;
+        dest = target;
+        size = numbers.length;
+                
+        dfs(numbers, -1, 0);
+        
+        
+        return answer;
     }
-    
-    private static void bfs(int idx, int cur) {
-        if(idx == arr.length) {
-            if(cur == realTarget) {
-                result++;
+    //dfs
+    private static void dfs(int[] numbers, int depth, int sum) {
+        if(depth == size-1) {
+            if(sum == dest) {
+                answer++;   
             }
             return;
-        } else {
-            bfs(idx+1, cur+arr[idx]);
-            bfs(idx+1, cur+arr[idx]*-1); 
         }
+        int cur_num = numbers[depth+1];
+        //+연산
+        dfs(numbers, depth+1, sum + cur_num);
+        //-연산
+        dfs(numbers, depth+1, sum - cur_num);
     }
 }
