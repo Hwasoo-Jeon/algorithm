@@ -42,23 +42,27 @@ class Solution {
                 int newR = curR+moveR[i];
                 int newC = curC+moveC[i];
                
-                boolean isGo = true;
-                while(isGo) {
-                    if(newR >= 0 && newR < r && newC >=0 && newC < c && !visited[newR][newC]) {
+                
+                while(true) {
+                    if(newR >= 0 && newR < r && newC >=0 && newC < c) {
                         if(board[newR].charAt(newC) == 'D') {
-                            q.offer(new Integer[] {newR-moveR[i], newC-moveC[i], curCnt+1});
-                            visited[newR-moveR[i]][newC-moveC[i]] = true;
-                            isGo = false;
-                        } else if (newR ==0 || newR == r || newC == 0 || newC == c) {
-                            q.offer(new Integer[] {newR, newC, curCnt+1});
+                        	if(!visited[newR-moveR[i]][newC-moveC[i]]) {
+                        		q.offer(new Integer[] {newR-moveR[i], newC-moveC[i], curCnt+1});
+                                visited[newR-moveR[i]][newC-moveC[i]] = true;
+                        	}
+                            break;
+                        } else if(((newR ==0 && i == 0) || (newR == r-1 && i == 1) ||
+                                   (newC == 0 && i == 2) || (newC == c-1 && i == 3)) && 
+                                   !visited[newR][newC]) {
+                    		q.offer(new Integer[] {newR, newC, curCnt+1});
                             visited[newR][newC] = true;
-                            isGo = false;
+                            break;
                         } else {
                             newR += moveR[i];
                             newC += moveC[i];
                         }
                     } else {
-                        isGo = false;
+                        break;
                     }
                 }
             }
