@@ -13,11 +13,10 @@ public class Main {
 			num[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		dp[1] = 1;
 		int result = 1;
-		for(int i=2; i<=size; i++) {
+		for(int i=1; i<=size; i++) {
 			dp[i] = 1;
-			for(int j=1; j<=size; j++) {
+			for(int j=1; j<=i; j++) {
 				if(num[i] < num[j] && dp[i] < dp[j] +1) {
 					dp[i] = dp[j] + 1;
 				}
