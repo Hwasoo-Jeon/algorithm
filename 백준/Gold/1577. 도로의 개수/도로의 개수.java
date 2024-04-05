@@ -49,30 +49,6 @@ public class Main {
 		});
 		 
 		dp[0][0] = 1;
-//		for(int i=0; i<=row; i++) {
-//			for(int j=0; j<=col; j++) {
-//				int[] mRow = {1,0};
-//				int[] mCol = {0,1};
-//				for(int m=0; m<2; m++) {
-//					int newRow = i+mRow[m];
-//					int newCol = j+mCol[m];
-//					if(newRow>=0&& newRow<=row && newCol>=0 && newCol<=col) {
-//						if(vanList.size()>0) {
-//							int[] check = vanList.get(0);
-//							int ly = check[0];
-//							int lx = check[1];
-//							int ry = check[2];
-//							int rx = check[3];
-//							if(ly==i && lx==j && ry==newRow && rx==newCol) {
-//								vanList.remove(0);
-//								continue;
-//							}
-//						}
-//						dp[newRow][newCol] += dp[i][j];
-//					}
-//				}
-//			}
-//		}
 		for(int i=0; i<=row; i++) {
 			for(int j=0; j<=col; j++) {
 				int[] mRow = {1,0};
@@ -111,23 +87,34 @@ newY = curY + 0;
 
 newX = curX + 0;
 newY = curY + 1;
-for() van과 겹치면 진입불가
 
-//		for(int i=0; i< vanList.size(); i++) {
-//			int[] start = vanList.get(i);
-//			int sy = start[0];
-//			int sx = start[1];
-//			if(sy == 0 & sx==0) {
-//				System.out.println(0);
-//				return;
+현재 좌표, 새로운 좌표가 vanList와 같으면 안돼.
+시간 줄이기 위하여 vanList remove
+다만 만일 경우를 방지하기 위해,
+ArrayList for문 전체 돌기
+//		for(int i=0; i<=row; i++) {
+//			for(int j=0; j<=col; j++) {
+//				int[] mRow = {1,0};
+//				int[] mCol = {0,1};
+//				for(int m=0; m<2; m++) {
+//					int newRow = i+mRow[m];
+//					int newCol = j+mCol[m];
+//					if(newRow>=0&& newRow<=row && newCol>=0 && newCol<=col) {
+//						if(vanList.size()>0) {
+//							int[] check = vanList.get(0);
+//							int ly = check[0];
+//							int lx = check[1];
+//							int ry = check[2];
+//							int rx = check[3];
+//							if(ly==i && lx==j && ry==newRow && rx==newCol) {
+//								vanList.remove(0);
+//								continue;
+//							}
+//						}
+//						dp[newRow][newCol] += dp[i][j];
+//					}
+//				}
 //			}
 //		}
-			
-//			for(int i=0; i<row; i++) {
-//				for(int j=0;j<dp[i].length;j++) {
-//				System.out.print(dp[i][j]+",");
-//				}
-//				System.out.println();
-//			}
 
 */
