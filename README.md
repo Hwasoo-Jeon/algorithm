@@ -1,2 +1,2 @@
-# boj
-This is a auto push repository for Baekjoon Online Judge created with [BaekjoonHub](https://github.com/BaekjoonHub/BaekjoonHub).
+# Algorithm PS Repository
+1 Day 1PS 목표
