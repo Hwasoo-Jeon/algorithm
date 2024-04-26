@@ -30,6 +30,7 @@ public class Main {
 				low = mid+1;
 			}
 		}
+		
 		Collections.sort(resultList);
 		System.out.println(resultList.get(0)+"");
 	}
