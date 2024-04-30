@@ -14,7 +14,6 @@ class Solution {
             answer *= (i+1);
         }
         
-        
         return answer-1;
     }
 }
