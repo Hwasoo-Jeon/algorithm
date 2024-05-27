@@ -9,21 +9,16 @@ class Solution {
             pq.offer(i);
         }
         
-        if(pq.peek() >= K) {
-            return answer;
-        }
-        
-        while(pq.size() > 1) {
+        while(pq.size() > 1 && pq.peek() < K) {
             int n1 = pq.poll();
             int n2 = pq.poll();
             int result = n1 + n2*2;
             answer++;
             pq.offer(result);
-            if(pq.peek() >= K) {
-                return answer;
-            }
-            
         }
-        return -1;
+        if(pq.peek() < K) {
+            answer = -1;
+        }
+        return answer;
     }
 }
