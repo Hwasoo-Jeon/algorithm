@@ -3,7 +3,7 @@ import java.util.*;
 class Solution {
     public int solution(int n, int[] lost, int[] reserve) {
         
-        int[] students = new int[n+1];
+        int[] students = new int[n+2];
         Arrays.fill(students, 1);
         
         for(int i=0; i<lost.length; i++) {
@@ -15,7 +15,7 @@ class Solution {
             students[r]++;
         }
         
-        for(int i=1; i<n; i++) {
+        for(int i=1; i<=n; i++) {
             int pre = students[i-1];
             int cur = students[i];
             int next = students[i+1];
@@ -31,10 +31,10 @@ class Solution {
                 }
             }
         }
-        if(students[n] > 1 && students[n-1] < 1) {
-            students[n]--;
-            students[n-1]++;
-        }
+        // if(students[n] > 1 && students[n-1] < 1) {
+        //     students[n]--;
+        //     students[n-1]++;
+        // }
         
         int answer = 0;
         for(int i=1; i<=n; i++) {
