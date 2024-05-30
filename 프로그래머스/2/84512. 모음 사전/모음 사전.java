@@ -36,15 +36,17 @@ class Solution {
     }
     
     private static void init(int depth, String s) {
-        if(depth == 5) {
-            return;
-        }
+        
         
         for(int i=0; i<5; i++) {
             String next = s+Integer.toString(i);
+            System.out.println(next);
             map.put(next, cnt);
             cnt++;
-            init(depth+1, next);
+            if(depth < 4) {
+                init(depth+1, next);
+            }
+            
         }
     }
 }
