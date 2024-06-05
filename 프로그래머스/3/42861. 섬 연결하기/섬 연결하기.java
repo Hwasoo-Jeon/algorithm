@@ -32,10 +32,10 @@ class Solution {
     //     if(find(a) != find(b)) parent[b] = parent[a];
     // }
     public void union(int a, int b) {
-        a = find(a);
-        b = find(b);
-        if (a != b) 
-            parent[b] = a;
+        int rootA = find(a);
+        int rootB = find(b);
+        if (rootA != rootB) 
+            parent[rootB] = rootA;
     }
 }
 
