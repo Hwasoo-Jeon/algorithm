@@ -1,56 +1,75 @@
 import java.util.*;
 
+class Coord {
+    int y;
+    int x;
+    int move;
+    
+    Coord(int y, int x, int move) {
+        this.y = y;
+        this.x = x;
+        this.move = move;
+    }
+}
+
 class Solution {
     
-    private static class Coord {
-        int y;
-        int x;
-        int idx;
+    private static int answer = Integer.MAX_VALUE;
+    private static int ySize;
+    private static int xSize;
 
-        public Coord(int y, int x, int idx) {
-            this.y = y;
-            this.x = x;
-            this.idx = idx;
-        }
-    }
-    
     public int solution(int[][] maps) {
-        
-        int answer = Integer.MAX_VALUE;
-        boolean[][] visit = new boolean[maps.length][maps[0].length];
-        
-        int dest_y = maps.length;
-        int dest_x = maps[0].length;
-        
-        int[] move_y = {-1,1,0,0};
-        int[] move_x = {0,0,-1,1};
-        
-        Queue<Coord> queue = new LinkedList<>();
-        queue.offer(new Coord(0,0,1));
-        
-        while(!queue.isEmpty()) {
-            Coord coord = queue.poll();
-            int cur_idx = coord.idx;
-            int cur_y = coord.y;
-            int cur_x = coord.x;
+        ySize = maps.length;
+        xSize = maps[0].length;
+        Queue<Coord> q = new LinkedList<>();
+        q.offer(new Coord(0,0, 1));
+        boolean[][] visited = new boolean[ySize][xSize];
+        visited[0][0] = true;
+        while(!q.isEmpty()) {
+            Coord cur = q.poll();
             
-            if(cur_y == dest_y-1 && cur_x==dest_x-1) {
-                answer = Math.min(answer, cur_idx);
+            if(cur.y == ySize-1 && cur.x == xSize-1) {
+                answer = Math.min(answer, cur.move);
                 break;
             }
-        
-            for(int i=0; i<4; i++) {
-                int next_y = move_y[i] + cur_y;
-                int next_x = move_x[i] + cur_x;
-                if(next_y>=0 && next_y<dest_y && next_x>=0 && next_x<dest_x) {
-                    if(!visit[next_y][next_x] && maps[next_y][next_x] != 0) {
-                        queue.offer(new Coord(next_y, next_x, cur_idx+1));
-                        visit[next_y][next_x] = true;
+
+            int[] moveY = {-1, 1, 0, 0};
+            int[] moveX = {0, 0, -1, 1};
+            for(int m = 0; m<4; m++) {
+                int newY = cur.y+ moveY[m];
+                int newX = cur.x+ moveX[m];
+                if(newY >=0 && newX>=0 && newY<ySize && newX<xSize) {
+                    if(maps[newY][newX] == 1 && !visited[newY][newX]) {
+                        visited[newY][newX] = true;
+                        q.offer(new Coord(newY, newX, cur.move+1));    
                     }
                 }
             }
         }
-        
-        return answer>dest_y*dest_x? -1:answer;
+        return answer == Integer.MAX_VALUE ? -1 : answer;
+    }
+    
+}
+
+/*
+private static void dfs(int y, int x, int move, int[][] maps, boolean[][] visited) {
+    if(y == ySize-1 && x == xSize-1) {
+        answer = Math.min(answer, move);
+        return;
+    }
+
+    int[] moveY = {-1, 1, 0, 0};
+    int[] moveX = {0, 0, -1, 1};
+    for(int m = 0; m<4; m++) {
+        int newY = y+ moveY[m];
+        int newX = x+ moveX[m];
+        if(newY >=0 && newX>=0 && newY<ySize && newX<xSize) {
+            if(maps[newY][newX] == 1 && !visited[newY][newX]) {
+                visited[newY][newX] = true;
+                bfs(newY, newX, move+1, maps, visited);
+                visited[newY][newX] = false;    
+            }
+        }
     }
 }
+*/
