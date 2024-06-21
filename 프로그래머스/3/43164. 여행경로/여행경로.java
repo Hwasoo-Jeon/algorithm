@@ -5,16 +5,25 @@ import java.util.*;
 소팅하고,
 이대로 직진
 대신 맵에 넣어
+=> 틀림. [["ICN", "AAA"], ["BBB", "ICN"], ["ICN", "BBB"]] 이 예시 만족 못함. 케이스 1, 2번
+
+stack과 result.add(0, from) 방식이면
+[aaa, icn] => aaa
+[bbb, icn]
+[icn, bbb, icn] => icn, aaa
+[bbb, icn] => bbb, icn, aaa
+[icn] => icn bbb icn aaa 
 */
 class Solution {
     public String[] solution(String[][] tickets) {
-        Arrays.sort(tickets, (a,b) -> {
-            if(a[0].equals(b[0])) {
-                return a[1].compareTo(b[1]);
-            } else {
-                return a[0].compareTo(b[0]);
-            }
-        });
+        // Arrays.sort(tickets, (a,b) -> {
+        //     if(a[0].equals(b[0])) {
+        //         return a[1].compareTo(b[1]);
+        //     } else {
+        //         return a[0].compareTo(b[0]);
+        //     }
+        // });
+        
         // HashMap<String, ArrayList<String>> map = new HashMap<>();
         // for(int i=0; i<tickets.length; i++) {
         //     String[] cur = tickets[i];
