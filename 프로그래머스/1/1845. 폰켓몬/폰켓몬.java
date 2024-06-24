@@ -14,23 +14,4 @@ class Solution {
         }
         return pick<=numsSet.size() ? pick : numsSet.size();
     }
-    
-    private static void makeNum(int idx, int pickCnt, boolean[] visited) {
-        if(pickCnt == pick) {
-            HashSet<Integer> numSet = new HashSet<>();
-            for(int i=0; i<visited.length; i++) {
-                if(visited[i]) numSet.add(numArr[i]);
-            }
-            max = Math.max(numSet.size(), max);
-            return; 
-        }
-        
-        for(int i=idx; i<numArr.length; i++) {
-            if(!visited[i]) {
-                visited[i] = true;
-                makeNum(idx+1, pickCnt+1, visited);
-                visited[i] = false;
-            }
-        }
-    }
 }
